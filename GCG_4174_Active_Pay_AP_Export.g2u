@@ -1,0 +1,241 @@
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.ODBC.Connection!conX.OpenConnection(v.Ambient.PDSN,v.Ambient.PUser,v.Ambient.PPass) 
+
+'clear data from hist table for previous days. 
+Function.Intrinsic.Control.CallSub(clear_hist) 
+
+'Get Data
+Function.Intrinsic.Control.CallSub(get_data)
+
+'build csv. 
+F.Intrinsic.Control.CallSub(build_csv) 
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4174_Active_Pay_AP_Export.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Unload)	
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Main.End
+
+Program.Sub.Unload.Start
+F.Intrinsic.Control.SetErrorHandler("Unload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.ODBC.Connection!conX.Close 
+
+F.Intrinsic.Control.End
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Unload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4174_Active_Pay_AP_Export.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	Function.Intrinsic.Control.End
+
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Unload.End
+
+Program.Sub.Get_Data.Start
+F.Intrinsic.Control.SetErrorHandler("Unload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+v.Local.sSQL.Declare(String) 
+v.Local.ic.Declare(Long) 
+
+
+
+
+
+
+
+F.Intrinsic.String.Build("Select Vendor,Invoice,Batch_CODE,Date_Invoice,Amt_Invoice,Date_Check, Purchase_Order From V_AP_OPEN_ITEMS WHERE Date_Check = '{0}' And Batch_CODE = '11' And Vendor In(Select VENDOR From V_VENDOR_INTL WHERE PAY_WITH_CCARD = 'Y')",v.Ambient.Date.PervasiveDate,v.Local.sSQL) 
+
+
+F.Data.DataTable.CreateFromSQL("OPENITEMS","conX",v.Local.sSQL,True) 
+
+
+'now loop through that dattable and remove any records that are already written within our customer 
+'GCG_4174_Pay_HIst
+F.Intrinsic.Control.For(v.Local.ic,0,v.DataTable.OPENITEMS.RowCount--,1)
+	F.Intrinsic.String.Build("Select * From GCG_4174_Pay_Hist Where Vendor = '{0}' And Invoice_No = '{1}' And AMT_Invoice = '{2}' And Date_Check = '{3}' And Date_Trans = '{4}'",v.DataTable.OPENITEMS(v.Local.ic).Vendor!FieldValTrim,v.datatable.OPenITEMS(v.Local.ic).INVOicE!FieldValTrim,v.datatable.OpenItems(v.Local.ic).AMT_Invoice!FieldValTrim,v.datatable.OPENITEMS(v.Local.ic).Date_Check!FieldValPervasiveDate,v.Ambient.Date.pervasiveDate,v.Local.sSQL)
+	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",v.Local.sSQL) 
+	Function.Intrinsic.Control.If(v.ODBC.conX!rst.EOF,=,False) 
+		'means this record has already been done, remove from datatable. 
+		F.Data.DataTable.DeleteRow("OpenItems",v.Local.ic) 
+	Function.Intrinsic.Control.EndIf 
+	f.ODBC.conX!rst.Close 
+f.Intrinsic.Control.Next(v.Local.ic) 
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Unload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4174_Active_Pay_AP_Export.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	Function.Intrinsic.Control.CallSub(unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Get_Data.End
+
+Program.Sub.Clear_Hist.Start
+F.Intrinsic.Control.SetErrorHandler("Clear_Hist_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+v.Local.sSQL.Declare(String) 
+
+F.Intrinsic.String.Build("Delete From GCG_4174_PAY_HIST WHERE Date_Trans < '{0}'",v.Ambient.Date.PervasiveDate,v.Local.sSQL) 
+
+F.ODBC.Connection!conX.Execute(v.Local.sSQL) 
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Clear_Hist_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4174_Active_Pay_AP_Export.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	f.Intrinsic.Control.CallSub(unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Clear_Hist.End
+
+Program.Sub.Build_CSV.Start
+F.Intrinsic.Control.SetErrorHandler("Build_CSV_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+v.Local.sCSV.Declare(String) 
+v.Local.ic.Declare(Long) 
+v.Local.sFilePath.Declare(String) 
+v.Local.sFQN.Declare(STring) 
+v.Local.sFileName.Declare(String) 
+v.Local.bVal.Declare(Boolean)
+v.Local.fAmt.Declare(FLoat) 
+v.Local.sAmt.Declare(String)
+
+'CRATE VIEW OF UNCHANGED ROWS 2
+F.Data.DataView.Create("OPENITEMS","OPENITEMS",2) 
+
+
+F.Intrinsic.Control.If(v.dataview.OpenItems!OpenItems.RowCount,=,0) 
+	f.Intrinsic.UI.Msgbox("No Records to Process. Ending...") 
+	f.Intrinsic.Control.CallSub(unload) 
+Function.Intrinsic.Control.EndIf
+
+F.ODBC.Connection!conX.OpenLocalRecordsetRW("rstSave","Select * From GCG_4174_Pay_Hist") 
+
+F.Intrinsic.Control.For(v.Local.ic,0,v.dataview.OpenItems!OpenItems.RowCount--,1) 
+	v.Local.fAmt.Set(v.dataview.OpenItems!OpenItems(v.Local.ic).Amt_Invoice!FieldValFloat) 
+	f.Intrinsic.String.Format(v.Local.fAmt,"0.00",v.Local.sAmt)	
+	Function.Intrinsic.Control.If(v.Local.sCSV.Trim,=,"") 
+		'Vendor Id, Invoice Number, Invoice date (mm/DD/yyyy),Invoice Amount (no commas),,,,,PO Number
+		f.Intrinsic.String.Build("{0},{1},{2},{3},,,,,{4}",v.dataview.OpenItems!OpenItems(v.Local.ic).Vendor!FieldValTrim,v.dataview.OpenItems!OpenItems(v.Local.ic).Invoice!FieldValTrim,v.dataview.OpenItems!OpenItems(v.Local.ic).Date_Invoice!FieldVal,v.Local.sAmt,v.dataview.OpenItems!OpenItems(v.Local.ic).Purchase_Order!fieldvaltrim,v.Local.sCSV)
+	Function.Intrinsic.Control.Else 
+		f.Intrinsic.String.Build("{5}{6}{0},{1},{2},{3},,,,,{4}",v.dataview.OpenItems!OpenItems(v.Local.ic).Vendor!FieldValTrim,v.dataview.OpenItems!OpenItems(v.Local.ic).Invoice!FieldValTrim,v.dataview.OpenItems!OpenItems(v.Local.ic).Date_Invoice!FieldVal,v.Local.sAmt,v.datatable.OpenItems!OpenItems(v.Local.ic).Purchase_Order!fieldvaltrim,v.Local.sCSV,v.Ambient.NewLine,v.Local.sCSV)		
+	Function.Intrinsic.Control.EndIf
+	
+
+
+	'add records to table manually since at this point in the universe the save to db doesn't work. 
+	F.ODBC.conX!rstSave.AddNew
+	f.ODBC.conX!rstSave.Set!Vendor(v.dataview.OpenItems!OpenItems(v.Local.ic).Vendor!FieldValTrim) 
+	F.ODBC.conX!rstSave.Set!Invoice_NO(v.dataview.OpenItems!OpenItems(v.Local.ic).Invoice!FieldvaltriM) 
+	F.ODBC.conX!rstSave.Set!AMT_Invoice(V.dataview.OpenItems!OpenItems(v.Local.ic).Amt_Invoice!FieldvalFloat) 
+	F.ODBC.conX!rstSave.Set!Date_Check(v.dataview.OpenItems!OpenItems(v.Local.ic).Date_Check!FieldVal) 
+	F.ODBC.conX!rstSave.Set!Date_Trans(v.Ambient.Date.pervasivedate) 
+		
+F.Intrinsic.Control.Next(v.Local.ic) 
+
+v.Local.ic.Set(0) 
+
+F.Intrinsic.Control.If(v.Local.sCSV.Trim,<>,"") 
+	'create file name default and ask user for save location. 
+	F.Intrinsic.String.Build("{0}_{1}.csv",v.Caller.Terminal,v.Ambient.Date,v.Local.sFileName) 
+	f.Intrinsic.File.MakeFileNameFriendly(v.Local.sFileName,v.Local.sFileName) 
+	f.Intrinsic.Control.Label("ShowSave")
+	F.Intrinsic.UI.ShowSaveFileDialog(v.Local.sFileName,"",v.Local.sFilePath) 
+	
+	Function.Intrinsic.Control.If(v.Local.sFilePath,=,"***CANCEL***") 
+		v.Local.ic.Set(v.Local.ic.++) 
+		f.Intrinsic.Control.If(v.Local.ic,>=,2)
+			Function.Intrinsic.Control.CallSub(unload)
+		Function.Intrinsic.Control.EndIf		
+		f.Intrinsic.Control.GoTo("ShowSave")
+	Function.Intrinsic.Control.EndIf
+	
+	
+
+
+	f.Intrinsic.File.IsFilenameValid(v.Local.sFilePath,v.Local.bVal) 
+
+	f.Intrinsic.Control.If(v.Local.bVal,=,False) 
+		'idk. 
+	Function.Intrinsic.Control.EndIf
+	
+	'file exists. 
+	f.Intrinsic.File.Exists(v.Local.sFilePath,v.Local.bVal) 
+	f.Intrinsic.Control.If(v.Local.bVal,=,True) 
+		f.Intrinsic.File.DeleteFile(v.Local.sFilePath) 
+	Function.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.File.String2File(v.Local.sFilePath,v.Local.sCSV) 
+	f.ODBC.conX!rstSave.Update
+	f.ODBC.conX!rstSave.Close		
+Function.Intrinsic.Control.EndIf
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Build_CSV_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4174_Active_Pay_AP_Export.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	Function.Intrinsic.Control.CallSub(unload) 	
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Build_CSV.End
+
+Program.Sub.Comments.Start
+${$0$}$GCG_4174_Active_Pay_AP_Export$}$TRT$}$08/11/2016 7:47:14 AM$}$False
+${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$Quote: 7814
+TRT
+8/11/16
+Title:
+Active Pay AP Export
+
+Description:
+This will be a custom project that will allow the user to select the vendors that need to be paid by Credit Card. Once the Invoice are selected for Payment, then the custom Menu Item Create PCN file will need to used to create the csv file.
+
+Specification:
+Under Accounts Payable -> Vendor -> Open/New -> Select Vendor then click Options. The user will need to check the Pay with Credit Card and select the Credit Card Name. Then click Save. This will mark the vendor as payable with a Credit Card. Then under Accounts Payable -> Transactions -> Select/Deselect Invoice for payment. Select the Vendor when selecting invoice click the Add button to pay by credit card. Once this process is complete then run the custom menu item that will run by current date. This will run through all AP Open items by the Check date. Then for vendors that are marked as pay with Credit Card these transactions will be retrieved. The csv file will contain the vendor ID, Invoice Number, Invoice Date, Invoice amount, and Po number. The format for be as follows. Vendor ID, Invoice Number, Invoice Date(MM/DD/YYYY), Invoice Amount(1000.00),,,,,PO Number. There will be one line per transaction. This custom menu item will allow the user to select the save location of the File being generated and will default with a file save name. The format for the file name will be terminal_Date_Time to create a unique file name each time this is run.
+
+Technical Specification:
+Use AP Open Items table with columns Vendor = Vendor ID Invoice = Invoice Number Batch Code = 11 Date_Invoice = Invoice Date Amt_Invoice = invoice amount Date check = Ambient Date since this process can be run multiple times per day the information that has already been generated in a csv will need to be saved to a custom table. This can be cleared on each day. This will prevent duplicate data from being generated on multiple runs. Basically anything that has already been processed is ignored and only the new records created. The Custom table will contain Vendor invoice number invoice amount date Check Check Vendor_Intl to see if the column Pay_With_Card has a Y in it. These are the only vendor the csv needs to contain.
+Program.Sub.Comments.End

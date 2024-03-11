@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SyntaxEdit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BorderStyle>None</BorderStyle>
+  <Pages>
+    <DefaultPage>
+      <Header>
+        <Offset>
+          <X>0</X>
+          <Y>0</Y>
+        </Offset>
+      </Header>
+      <Footer>
+        <Offset>
+          <X>0</X>
+          <Y>0</Y>
+        </Offset>
+      </Footer>
+      <PageSize>
+        <Width>0</Width>
+        <Height>0</Height>
+      </PageSize>
+    </DefaultPage>
+  </Pages>
+  <DisplayStrings />
+  <Selection>
+    <SelectionRect>
+      <Location>
+        <X>0</X>
+        <Y>224</Y>
+      </Location>
+      <Size>
+        <Width>24</Width>
+        <Height>16</Height>
+      </Size>
+      <X>0</X>
+      <Y>224</Y>
+      <Width>24</Width>
+      <Height>16</Height>
+    </SelectionRect>
+    <Options>UseColors OverwriteBlocks SelectLineOnTripleClick CopyLineWhenEmpty SelectWordOnCtrlClick</Options>
+  </Selection>
+  <Gutter>
+    <LineNumbersForeColor>WindowText</LineNumbersForeColor>
+    <Options>PaintLineNumbers PaintBookMarks PaintLineModificators</Options>
+  </Gutter>
+  <Margin>
+    <Visible>false</Visible>
+  </Margin>
+  <LineStyles />
+  <LineSeparator />
+  <Printing>
+    <Footer>
+      <Offset>
+        <X>0</X>
+        <Y>0</Y>
+      </Offset>
+    </Footer>
+    <Header>
+      <Offset>
+        <X>0</X>
+        <Y>0</Y>
+      </Offset>
+    </Header>
+  </Printing>
+  <WhiteSpace />
+  <TextSource>
+    <Position>
+      <X>0</X>
+      <Y>224</Y>
+    </Position>
+    <Lexer>
+      <Scheme>
+        <Author>Quantum Whale, LLC.</Author>
+        <Copyright>Copyright (c) 2004 - 2014 Quantum Whale LLC.</Copyright>
+        <FileType>gas</FileType>
+        <Version>1.5</Version>
+        <Styles>
+          <Style>
+            <Name>idents</Name>
+            <ForeColor>ControlText</ForeColor>
+          </Style>
+          <Style>
+            <Name>numbers</Name>
+            <ForeColor>ControlText</ForeColor>
+          </Style>
+          <Style>
+            <Name>reswords</Name>
+            <ForeColor>Blue</ForeColor>
+          </Style>
+          <Style>
+            <Name>comments</Name>
+            <ForeColor>Green</ForeColor>
+            <PlainText>true</PlainText>
+          </Style>
+          <Style>
+            <Name>xmlcomments</Name>
+            <ForeColor>Gray</ForeColor>
+          </Style>
+          <Style>
+            <Name>symbols</Name>
+            <ForeColor>WindowText</ForeColor>
+          </Style>
+          <Style>
+            <Name>whitespace</Name>
+            <ForeColor>WindowText</ForeColor>
+          </Style>
+          <Style>
+            <Name>strings</Name>
+            <ForeColor>Maroon</ForeColor>
+            <PlainText>true</PlainText>
+          </Style>
+          <Style>
+            <Name>directives</Name>
+            <ForeColor>Blue</ForeColor>
+          </Style>
+          <Style>
+            <Name>htmlparams</Name>
+            <ForeColor>Red</ForeColor>
+          </Style>
+          <Style>
+            <Name>syntax errors</Name>
+            <ForeColor>Red</ForeColor>
+          </Style>
+          <Style>
+            <Name>codes nippets</Name>
+            <ForeColor>Black</ForeColor>
+            <BackColor>255:180:228:180</BackColor>
+          </Style>
+          <Style>
+            <Name>GabReservedWords</Name>
+            <ForeColor>Blue</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabTokenWithBrackets</Name>
+            <ForeColor>Gray</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabFunctionIntrinsicDebug</Name>
+            <ForeColor>White</ForeColor>
+            <BackColor>Red</BackColor>
+            <FontStyle>Bold</FontStyle>
+            <PlainText>true</PlainText>
+          </Style>
+          <Style>
+            <Name>GabVariable</Name>
+            <ForeColor>Teal</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabVariableSystemDefined</Name>
+            <ForeColor>Teal</ForeColor>
+            <FontStyle>Bold Italic</FontStyle>
+          </Style>
+          <Style>
+            <Name>GabGui</Name>
+            <ForeColor>OrangeRed</ForeColor>
+          </Style>
+          <Style>
+            <Name>GabProgramSubStartEnd</Name>
+            <ForeColor>Black</ForeColor>
+            <BackColor>LightGray</BackColor>
+            <FontStyle>Bold</FontStyle>
+            <PlainText>true</PlainText>
+          </Style>
+        </Styles>
+      </Scheme>
+    </Lexer>
+    <TextStrings>
+      <Lines>
+        <string>Program.Sub.Preflight.Start</string>
+        <string />
+        <string>Program.Sub.Preflight.End</string>
+        <string />
+        <string>Program.Sub.Main.Start</string>
+        <string>F.Intrinsic.Control.SetErrorHandler("Main_Err")</string>
+        <string>F.Intrinsic.Control.ClearErrors</string>
+        <string />
+        <string>V.Local.sError.Declare(String)</string>
+        <string />
+        <string>F.ODBC.Connection!conX.OpenConnection(v.Ambient.PDSN,v.Ambient.PUser,v.Ambient.PPass) </string>
+        <string />
+        <string>'clear data from hist table for previous days. </string>
+        <string>Function.Intrinsic.Control.CallSub(clear_hist) </string>
+        <string />
+        <string>'Get Data</string>
+        <string>Function.Intrinsic.Control.CallSub(get_data)</string>
+        <string />
+        <string>'build csv. </string>
+        <string>F.Intrinsic.Control.CallSub(build_csv) </string>
+        <string />
+        <string />
+        <string />
+        <string>F.Intrinsic.Control.ExitSub</string>
+        <string />
+        <string>F.Intrinsic.Control.Label("Main_Err")</string>
+        <string>F.Intrinsic.Control.If(V.Ambient.ErrorNumber,&lt;&gt;,0)</string>
+        <string>	Function.Intrinsic.String.Concat("Project: GCG_4174_Active_Pay_AP_Export.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)</string>
+        <string>	F.Intrinsic.UI.Msgbox(V.Local.sError)</string>
+        <string>	F.Intrinsic.Control.CallSub(Unload)	</string>
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>Program.Sub.Main.End</string>
+        <string />
+        <string>Program.Sub.Unload.Start</string>
+        <string>F.Intrinsic.Control.SetErrorHandler("Unload_Err")</string>
+        <string>F.Intrinsic.Control.ClearErrors</string>
+        <string />
+        <string>V.Local.sError.Declare(String)</string>
+        <string />
+        <string>F.ODBC.Connection!conX.Close </string>
+        <string />
+        <string>F.Intrinsic.Control.End</string>
+        <string />
+        <string>F.Intrinsic.Control.ExitSub</string>
+        <string />
+        <string>F.Intrinsic.Control.Label("Unload_Err")</string>
+        <string>F.Intrinsic.Control.If(V.Ambient.ErrorNumber,&lt;&gt;,0)</string>
+        <string>	Function.Intrinsic.String.Concat("Project: GCG_4174_Active_Pay_AP_Export.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)</string>
+        <string>	F.Intrinsic.UI.Msgbox(V.Local.sError)</string>
+        <string>	Function.Intrinsic.Control.End</string>
+        <string />
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>Program.Sub.Unload.End</string>
+        <string />
+        <string>Program.Sub.Get_Data.Start</string>
+        <string>F.Intrinsic.Control.SetErrorHandler("Unload_Err")</string>
+        <string>F.Intrinsic.Control.ClearErrors</string>
+        <string />
+        <string>V.Local.sError.Declare(String)</string>
+        <string>v.Local.sSQL.Declare(String) </string>
+        <string>v.Local.ic.Declare(Long) </string>
+        <string />
+        <string />
+        <string />
+        <string />
+        <string />
+        <string />
+        <string />
+        <string>F.Intrinsic.String.Build("Select Vendor,Invoice,Batch_CODE,Date_Invoice,Amt_Invoice,Date_Check, Purchase_Order From V_AP_OPEN_ITEMS WHERE Date_Check = '{0}' And Batch_CODE = '11' And Vendor In(Select VENDOR From V_VENDOR_INTL WHERE PAY_WITH_CCARD = 'Y')",v.Ambient.Date.PervasiveDate,v.Local.sSQL) </string>
+        <string />
+        <string />
+        <string>F.Data.DataTable.CreateFromSQL("OPENITEMS","conX",v.Local.sSQL,True) </string>
+        <string />
+        <string />
+        <string>'now loop through that dattable and remove any records that are already written within our customer </string>
+        <string>'GCG_4174_Pay_HIst</string>
+        <string>F.Intrinsic.Control.For(v.Local.ic,0,v.DataTable.OPENITEMS.RowCount--,1)</string>
+        <string>	F.Intrinsic.String.Build("Select * From GCG_4174_Pay_Hist Where Vendor = '{0}' And Invoice_No = '{1}' And AMT_Invoice = '{2}' And Date_Check = '{3}' And Date_Trans = '{4}'",v.DataTable.OPENITEMS(v.Local.ic).Vendor!FieldValTrim,v.datatable.OPenITEMS(v.Local.ic).INVOicE!FieldValTrim,v.datatable.OpenItems(v.Local.ic).AMT_Invoice!FieldValTrim,v.datatable.OPENITEMS(v.Local.ic).Date_Check!FieldValPervasiveDate,v.Ambient.Date.pervasiveDate,v.Local.sSQL)</string>
+        <string>	F.ODBC.Connection!conX.OpenLocalRecordsetRO("rst",v.Local.sSQL) </string>
+        <string>	Function.Intrinsic.Control.If(v.ODBC.conX!rst.EOF,=,False) </string>
+        <string>		'means this record has already been done, remove from datatable. </string>
+        <string>		F.Data.DataTable.DeleteRow("OpenItems",v.Local.ic) </string>
+        <string>	Function.Intrinsic.Control.EndIf </string>
+        <string>	f.ODBC.conX!rst.Close </string>
+        <string>f.Intrinsic.Control.Next(v.Local.ic) </string>
+        <string />
+        <string />
+        <string>F.Intrinsic.Control.ExitSub</string>
+        <string />
+        <string>F.Intrinsic.Control.Label("Unload_Err")</string>
+        <string>F.Intrinsic.Control.If(V.Ambient.ErrorNumber,&lt;&gt;,0)</string>
+        <string>	Function.Intrinsic.String.Concat("Project: GCG_4174_Active_Pay_AP_Export.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)</string>
+        <string>	F.Intrinsic.UI.Msgbox(V.Local.sError)</string>
+        <string>	Function.Intrinsic.Control.CallSub(unload)</string>
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>Program.Sub.Get_Data.End</string>
+        <string />
+        <string>Program.Sub.Clear_Hist.Start</string>
+        <string>F.Intrinsic.Control.SetErrorHandler("Clear_Hist_Err")</string>
+        <string>F.Intrinsic.Control.ClearErrors</string>
+        <string />
+        <string>V.Local.sError.Declare(String)</string>
+        <string>v.Local.sSQL.Declare(String) </string>
+        <string />
+        <string>F.Intrinsic.String.Build("Delete From GCG_4174_PAY_HIST WHERE Date_Trans &lt; '{0}'",v.Ambient.Date.PervasiveDate,v.Local.sSQL) </string>
+        <string />
+        <string>F.ODBC.Connection!conX.Execute(v.Local.sSQL) </string>
+        <string />
+        <string />
+        <string>F.Intrinsic.Control.ExitSub</string>
+        <string />
+        <string>F.Intrinsic.Control.Label("Clear_Hist_Err")</string>
+        <string>F.Intrinsic.Control.If(V.Ambient.ErrorNumber,&lt;&gt;,0)</string>
+        <string>	Function.Intrinsic.String.Concat("Project: GCG_4174_Active_Pay_AP_Export.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)</string>
+        <string>	F.Intrinsic.UI.Msgbox(V.Local.sError)</string>
+        <string>	f.Intrinsic.Control.CallSub(unload)</string>
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>Program.Sub.Clear_Hist.End</string>
+        <string />
+        <string>Program.Sub.Build_CSV.Start</string>
+        <string>F.Intrinsic.Control.SetErrorHandler("Build_CSV_Err")</string>
+        <string>F.Intrinsic.Control.ClearErrors</string>
+        <string />
+        <string>V.Local.sError.Declare(String)</string>
+        <string>v.Local.sCSV.Declare(String) </string>
+        <string>v.Local.ic.Declare(Long) </string>
+        <string>v.Local.sFilePath.Declare(String) </string>
+        <string>v.Local.sFQN.Declare(STring) </string>
+        <string>v.Local.sFileName.Declare(String) </string>
+        <string>v.Local.bVal.Declare(Boolean)</string>
+        <string>v.Local.fAmt.Declare(FLoat) </string>
+        <string>v.Local.sAmt.Declare(String)</string>
+        <string />
+        <string>'CRATE VIEW OF UNCHANGED ROWS 2</string>
+        <string>F.Data.DataView.Create("OPENITEMS","OPENITEMS",2) </string>
+        <string />
+        <string />
+        <string>F.Intrinsic.Control.If(v.dataview.OpenItems!OpenItems.RowCount,=,0) </string>
+        <string>	f.Intrinsic.UI.Msgbox("No Records to Process. Ending...") </string>
+        <string>	f.Intrinsic.Control.CallSub(unload) </string>
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string>F.ODBC.Connection!conX.OpenLocalRecordsetRW("rstSave","Select * From GCG_4174_Pay_Hist") </string>
+        <string />
+        <string>F.Intrinsic.Control.For(v.Local.ic,0,v.dataview.OpenItems!OpenItems.RowCount--,1) </string>
+        <string>	v.Local.fAmt.Set(v.dataview.OpenItems!OpenItems(v.Local.ic).Amt_Invoice!FieldValFloat) </string>
+        <string>	f.Intrinsic.String.Format(v.Local.fAmt,"0.00",v.Local.sAmt)	</string>
+        <string>	Function.Intrinsic.Control.If(v.Local.sCSV.Trim,=,"") </string>
+        <string>		'Vendor Id, Invoice Number, Invoice date (mm/DD/yyyy),Invoice Amount (no commas),,,,,PO Number</string>
+        <string>		f.Intrinsic.String.Build("{0},{1},{2},{3},,,,,{4}",v.dataview.OpenItems!OpenItems(v.Local.ic).Vendor!FieldValTrim,v.dataview.OpenItems!OpenItems(v.Local.ic).Invoice!FieldValTrim,v.dataview.OpenItems!OpenItems(v.Local.ic).Date_Invoice!FieldVal,v.Local.sAmt,v.dataview.OpenItems!OpenItems(v.Local.ic).Purchase_Order!fieldvaltrim,v.Local.sCSV)</string>
+        <string>	Function.Intrinsic.Control.Else </string>
+        <string>		f.Intrinsic.String.Build("{5}{6}{0},{1},{2},{3},,,,,{4}",v.dataview.OpenItems!OpenItems(v.Local.ic).Vendor!FieldValTrim,v.dataview.OpenItems!OpenItems(v.Local.ic).Invoice!FieldValTrim,v.dataview.OpenItems!OpenItems(v.Local.ic).Date_Invoice!FieldVal,v.Local.sAmt,v.datatable.OpenItems!OpenItems(v.Local.ic).Purchase_Order!fieldvaltrim,v.Local.sCSV,v.Ambient.NewLine,v.Local.sCSV)		</string>
+        <string>	Function.Intrinsic.Control.EndIf</string>
+        <string>	</string>
+        <string />
+        <string />
+        <string>	'add records to table manually since at this point in the universe the save to db doesn't work. </string>
+        <string>	F.ODBC.conX!rstSave.AddNew</string>
+        <string>	f.ODBC.conX!rstSave.Set!Vendor(v.dataview.OpenItems!OpenItems(v.Local.ic).Vendor!FieldValTrim) </string>
+        <string>	F.ODBC.conX!rstSave.Set!Invoice_NO(v.dataview.OpenItems!OpenItems(v.Local.ic).Invoice!FieldvaltriM) </string>
+        <string>	F.ODBC.conX!rstSave.Set!AMT_Invoice(V.dataview.OpenItems!OpenItems(v.Local.ic).Amt_Invoice!FieldvalFloat) </string>
+        <string>	F.ODBC.conX!rstSave.Set!Date_Check(v.dataview.OpenItems!OpenItems(v.Local.ic).Date_Check!FieldVal) </string>
+        <string>	F.ODBC.conX!rstSave.Set!Date_Trans(v.Ambient.Date.pervasivedate) </string>
+        <string>		</string>
+        <string>F.Intrinsic.Control.Next(v.Local.ic) </string>
+        <string />
+        <string>v.Local.ic.Set(0) </string>
+        <string />
+        <string>F.Intrinsic.Control.If(v.Local.sCSV.Trim,&lt;&gt;,"") </string>
+        <string>	'create file name default and ask user for save location. </string>
+        <string>	F.Intrinsic.String.Build("{0}_{1}.csv",v.Caller.Terminal,v.Ambient.Date,v.Local.sFileName) </string>
+        <string>	f.Intrinsic.File.MakeFileNameFriendly(v.Local.sFileName,v.Local.sFileName) </string>
+        <string>	f.Intrinsic.Control.Label("ShowSave")</string>
+        <string>	F.Intrinsic.UI.ShowSaveFileDialog(v.Local.sFileName,"",v.Local.sFilePath) </string>
+        <string>	</string>
+        <string>	Function.Intrinsic.Control.If(v.Local.sFilePath,=,"***CANCEL***") </string>
+        <string>		v.Local.ic.Set(v.Local.ic.++) </string>
+        <string>		f.Intrinsic.Control.If(v.Local.ic,&gt;=,2)</string>
+        <string>			Function.Intrinsic.Control.CallSub(unload)</string>
+        <string>		Function.Intrinsic.Control.EndIf		</string>
+        <string>		f.Intrinsic.Control.GoTo("ShowSave")</string>
+        <string>	Function.Intrinsic.Control.EndIf</string>
+        <string>	</string>
+        <string>	</string>
+        <string />
+        <string />
+        <string>	f.Intrinsic.File.IsFilenameValid(v.Local.sFilePath,v.Local.bVal) </string>
+        <string />
+        <string>	f.Intrinsic.Control.If(v.Local.bVal,=,False) </string>
+        <string>		'idk. </string>
+        <string>	Function.Intrinsic.Control.EndIf</string>
+        <string>	</string>
+        <string>	'file exists. </string>
+        <string>	f.Intrinsic.File.Exists(v.Local.sFilePath,v.Local.bVal) </string>
+        <string>	f.Intrinsic.Control.If(v.Local.bVal,=,True) </string>
+        <string>		f.Intrinsic.File.DeleteFile(v.Local.sFilePath) </string>
+        <string>	Function.Intrinsic.Control.EndIf</string>
+        <string>	</string>
+        <string>	f.Intrinsic.File.String2File(v.Local.sFilePath,v.Local.sCSV) </string>
+        <string>	f.ODBC.conX!rstSave.Update</string>
+        <string>	f.ODBC.conX!rstSave.Close		</string>
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>F.Intrinsic.Control.ExitSub</string>
+        <string />
+        <string>F.Intrinsic.Control.Label("Build_CSV_Err")</string>
+        <string>F.Intrinsic.Control.If(V.Ambient.ErrorNumber,&lt;&gt;,0)</string>
+        <string>	Function.Intrinsic.String.Concat("Project: GCG_4174_Active_Pay_AP_Export.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)</string>
+        <string>	F.Intrinsic.UI.Msgbox(V.Local.sError)</string>
+        <string>	Function.Intrinsic.Control.CallSub(unload) 	</string>
+        <string>Function.Intrinsic.Control.EndIf</string>
+        <string />
+        <string />
+        <string>Program.Sub.Build_CSV.End</string>
+        <string />
+        <string>Program.Sub.Comments.Start</string>
+        <string>${$0$}$GCG_4174_Active_Pay_AP_Export$}$TRT$}$08/11/2016 7:47:14 AM$}$False</string>
+        <string>${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$Quote: 7814</string>
+        <string>TRT</string>
+        <string>8/11/16</string>
+        <string>Title:</string>
+        <string>Active Pay AP Export</string>
+        <string />
+        <string>Description:</string>
+        <string>This will be a custom project that will allow the user to select the vendors that need to be paid by Credit Card. Once the Invoice are selected for Payment, then the custom Menu Item Create PCN file will need to used to create the csv file.</string>
+        <string />
+        <string>Specification:</string>
+        <string>Under Accounts Payable -&gt; Vendor -&gt; Open/New -&gt; Select Vendor then click Options. The user will need to check the Pay with Credit Card and select the Credit Card Name. Then click Save. This will mark the vendor as payable with a Credit Card. Then under Accounts Payable -&gt; Transactions -&gt; Select/Deselect Invoice for payment. Select the Vendor when selecting invoice click the Add button to pay by credit card. Once this process is complete then run the custom menu item that will run by current date. This will run through all AP Open items by the Check date. Then for vendors that are marked as pay with Credit Card these transactions will be retrieved. The csv file will contain the vendor ID, Invoice Number, Invoice Date, Invoice amount, and Po number. The format for be as follows. Vendor ID, Invoice Number, Invoice Date(MM/DD/YYYY), Invoice Amount(1000.00),,,,,PO Number. There will be one line per transaction. This custom menu item will allow the user to select the save location of the File being generated and will default with a file save name. The format for the file name will be terminal_Date_Time to create a unique file name each time this is run.</string>
+        <string />
+        <string>Technical Specification:</string>
+        <string>Use AP Open Items table with columns Vendor = Vendor ID Invoice = Invoice Number Batch Code = 11 Date_Invoice = Invoice Date Amt_Invoice = invoice amount Date check = Ambient Date since this process can be run multiple times per day the information that has already been generated in a csv will need to be saved to a custom table. This can be cleared on each day. This will prevent duplicate data from being generated on multiple runs. Basically anything that has already been processed is ignored and only the new records created. The Custom table will contain Vendor invoice number invoice amount date Check Check Vendor_Intl to see if the column Pay_With_Card has a Y in it. These are the only vendor the csv needs to contain.</string>
+        <string>Program.Sub.Comments.End</string>
+      </Lines>
+    </TextStrings>
+  </TextSource>
+  <Scrolling>
+    <WindowOriginY>63</WindowOriginY>
+    <Options>None</Options>
+  </Scrolling>
+  <Outlining>
+    <AllowOutlining>true</AllowOutlining>
+    <ImageSize>8</ImageSize>
+    <Ranges>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>0</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>2</Y>
+        </EndPoint>
+        <Text>Program.Sub.Preflight</Text>
+        <DisplayText>Program.Sub.Preflight</DisplayText>
+        <Visible>false</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>4</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>33</Y>
+        </EndPoint>
+        <Text>Program.Sub.Main</Text>
+        <DisplayText>Program.Sub.Main</DisplayText>
+        <Visible>false</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>35</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>56</Y>
+        </EndPoint>
+        <Text>Program.Sub.Unload</Text>
+        <DisplayText>Program.Sub.Unload</DisplayText>
+        <Visible>false</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>58</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>101</Y>
+        </EndPoint>
+        <Text>Program.Sub.Get_Data</Text>
+        <DisplayText>Program.Sub.Get_Data</DisplayText>
+        <Visible>false</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>103</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>125</Y>
+        </EndPoint>
+        <Text>Program.Sub.Clear_Hist</Text>
+        <DisplayText>Program.Sub.Clear_Hist</DisplayText>
+        <Visible>false</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>127</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>222</Y>
+        </EndPoint>
+        <Text>Program.Sub.Build_CSV</Text>
+        <DisplayText>Program.Sub.Build_CSV</DisplayText>
+        <Visible>true</Visible>
+        <Level>0</Level>
+      </Range>
+      <Range>
+        <StartPoint>
+          <X>0</X>
+          <Y>224</Y>
+        </StartPoint>
+        <EndPoint>
+          <X>2147483647</X>
+          <Y>240</Y>
+        </EndPoint>
+        <Text>Program.Sub.Comments</Text>
+        <DisplayText>Program.Sub.Comments</DisplayText>
+        <Visible>false</Visible>
+        <Level>0</Level>
+      </Range>
+    </Ranges>
+  </Outlining>
+  <HyperText />
+  <Spelling />
+  <Braces />
+</SyntaxEdit>
